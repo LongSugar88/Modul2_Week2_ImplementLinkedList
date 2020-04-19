@@ -91,13 +91,15 @@ public class MyLinkedList<E> {
     public int getSize(){
         return numNodes;
     }
-    public void clone(MyLinkedList<E> cloneList){
+    public MyLinkedList<E> clone(){
+        MyLinkedList<E> cloneList = new MyLinkedList<>();
         Node current = head;
         cloneList.addFirst(current.data);
         for( int i=0; i<numNodes-1; i++){
             current = current.next;
             cloneList.addLast(current.data);
         }
+        return cloneList;
     }
     public boolean Contains(E element){
         boolean isContains = false;
@@ -140,7 +142,6 @@ public class MyLinkedList<E> {
 
     public static void main(String[] args) {
         MyLinkedList<Integer> myLiked = new MyLinkedList<>(3);
-        MyLinkedList<Integer> clone = new MyLinkedList<>();
 
         myLiked.addFirst(2);
         myLiked.addFirst(1);
@@ -149,7 +150,7 @@ public class MyLinkedList<E> {
         myLiked.remove(1);
         myLiked.remoteElement(0);
 
-        myLiked.clone(clone);
+        MyLinkedList<Integer> clone = myLiked.clone();
         clone.print();
 
         System.out.println("Value of element:" +  myLiked.get(0));
