@@ -91,7 +91,7 @@ public class MyLinkedList<E> {
     public int getSize(){
         return numNodes;
     }
-    public void clone(MyLinkedList cloneList){
+    public void clone(MyLinkedList<E> cloneList){
         Node current = head;
         cloneList.addFirst(current.data);
         for( int i=0; i<numNodes-1; i++){
@@ -130,8 +130,6 @@ public class MyLinkedList<E> {
         }
         return index;
     }
-
-
     public void print(){
         Node current = head;
         while(current != null){
@@ -143,14 +141,17 @@ public class MyLinkedList<E> {
     public static void main(String[] args) {
         MyLinkedList<Integer> myLiked = new MyLinkedList<>(3);
         MyLinkedList<Integer> clone = new MyLinkedList<>();
+
         myLiked.addFirst(2);
         myLiked.addFirst(1);
         myLiked.addFirst(-1);
         myLiked.addLast(0);
-        myLiked.clone(clone);
-        clone.print();
         myLiked.remove(1);
         myLiked.remoteElement(0);
+
+        myLiked.clone(clone);
+        clone.print();
+
         System.out.println("Value of element:" +  myLiked.get(0));
         System.out.println("Index of element:" +  myLiked.indexOf(3));
         System.out.println("Size of array:" +  myLiked.getSize());
