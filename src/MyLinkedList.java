@@ -158,7 +158,6 @@ public class MyLinkedList<E> {
         System.out.println("Size of array:" +  myLiked.getSize());
         System.out.println(        myLiked.Contains(5));
         System.out.println(        myLiked.Contains(2));
-
         myLiked.print();
     }
 
