@@ -51,30 +51,36 @@ public class MyLinkedList<E> {
         tail = tail.next;
         numNodes++;
     }
-    public void remove(int index){
-        Node previous = head;
-        for( int i=0; i< index-1; i++ ){
-            previous = previous.next;
+    public void remove(int index) {
+        if (index == 0) {
+            head = head.next;
+        } else {
+            Node previous = null;
+            Node current = head;
+            for (int i = 0; i < index; i++) {
+                previous = current;
+                current = current.next;
+            }
+            previous.next = current.next;
         }
-        Node current = previous.next;
-        previous.next = current.next;
         numNodes--;
     }
     // mới chỉ xóa được 1 phần tử
     public void remoteElement(E element){
-        Node previous = head;
-        if(previous.data == element){
-            head = previous.next;
+        Node previous = null;
+        Node current = head;
+        if(current.data == element){
+            head = current.next;
         }
         else{
             for( int i=0; i< numNodes; i++ ){
-                previous = previous.next;
-                if( previous.next.data == element) {
+                previous = current;
+                current = current.next;
+                if( current.next.data == element) {
                     break;
                 }
             }
         }
-        Node current = previous.next;
         previous.next = current.next;
         numNodes--;
     }
@@ -141,20 +147,24 @@ public class MyLinkedList<E> {
     }
 
     public static void main(String[] args) {
-        MyLinkedList<Integer> myLiked = new MyLinkedList<>(3);
+        MyLinkedList<Integer> myLiked = new MyLinkedList<>(5);
 
+        myLiked.addFirst(4);
+        myLiked.addFirst(3);
         myLiked.addFirst(2);
         myLiked.addFirst(1);
-        myLiked.addFirst(-1);
-        myLiked.addLast(0);
+        myLiked.print();
+        System.out.println("------------------------------");
+        myLiked.remove(0);
+        myLiked.remove(0);
         myLiked.remove(1);
-        myLiked.remoteElement(0);
+        myLiked.remoteElement(3);
 
         MyLinkedList<Integer> clone = myLiked.clone();
         clone.print();
 
         System.out.println("Value of element:" +  myLiked.get(0));
-        System.out.println("Index of element:" +  myLiked.indexOf(3));
+        System.out.println("Index of element:" +  myLiked.indexOf(2));
         System.out.println("Size of array:" +  myLiked.getSize());
         System.out.println(        myLiked.Contains(5));
         System.out.println(        myLiked.Contains(2));
